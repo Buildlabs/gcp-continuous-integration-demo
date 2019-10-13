@@ -6,6 +6,6 @@ FROM nginx:1.12-alpine
 COPY nginx/default.template /etc/nginx/conf.d/default.template
 
 #Copy the React app into the proper directory
-COPY --from=build-deps /usr/src/app/build /usr/share/nginx/html
+COPY ./ /usr/share/nginx/html
 # Substitute the environment variables and generate the final config
 CMD envsubst < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'
